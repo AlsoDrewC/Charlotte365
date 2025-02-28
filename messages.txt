@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Messages for Charlotte</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            transition: background-color 1s, color 1s;
+        }
+        h1, p {
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1 id="message"></h1>
+        <p id="message-description"></p>
+    </div>
+
+    <script>
+        const messages = [
+            "Charlotte, your smile lights up every room like a thousand stars 🌟. You make every day feel special!",
+            "I love how you tackle puzzles like no one else! You’re a mastermind, my brilliant Charlotte 💡.",
+            "Every time I see Jetty, I think of how amazing you are with animals. You have the kindest heart 🐾.",
+            "You’re the perfect balance of brilliant and beautiful, and I feel so lucky to call you mine 💖.",
+            "I can’t stop thinking about how amazing you are at everything, from knitting to strategy games 🧶🧩.",
+            "I’m constantly amazed by your passion to help others, especially women and BIPOC. You inspire me every day 🙌.",
+            "Every day with you is like a new adventure, full of love, laughter, and endless excitement! 🎉💑.",
+            "You’re the kind of person who can brighten any room with your presence. I’m so grateful for you 💕.",
+            "Your love for animals makes my heart melt, especially when I see you with Jetty. You're amazing 🐱💖.",
+            "The way you play Wordle like a pro makes me admire your intelligence even more. You're unstoppable 🔥.",
+            "Your creativity knows no bounds—whether it’s knitting, doodling, or 3D printing, you're always creating magic 🎨✨.",
+            "You make everything better, from a simple meal to a fun night watching Grey's Anatomy. You’re my sunshine ☀️.",
+            "Charlotte, your sense of humor always leaves me laughing. Your jokes are the best! 😂❤️.",
+            "You’re not just an amazing wife, but also the most loving aunt to your nephews. You inspire me to be better 💖.",
+            "Your passion for helping underserved communities is something I admire so deeply. You’re a true hero 🦸‍♀️.",
+            "From the first day we met, I knew you were extraordinary. You're still proving me right every single day 💕.",
+            "Every day with you feels like a new adventure, and I wouldn't want to go on this journey with anyone else 🌍❤️.",
+            "You're so smart, funny, and beautiful, it’s like you were made just for me. How did I get so lucky? 🍀💖.",
+            "I could never get tired of looking at you—you're the most beautiful person in my world 🌹.",
+            "You make me laugh so much, even on the toughest days. Your sense of humor is truly one of a kind 😄.",
+            "The way you care about others, especially those who need it the most, makes me so proud to be with you 🙏.",
+            "I could never find the right words to express how much I love you, but I hope these messages come close 💌.",
+            "Every day I learn something new and wonderful about you. You're a constant source of amazement and love ✨.",
+            "You’re the best at everything you do, from solving puzzles to creating beautiful art. You're unstoppable 💪.",
+            "Your love for nature and birdwatching inspires me to appreciate the small, beautiful things in life 🦜🍃.",
+            "Every meal with you is a special occasion, whether we’re enjoying pizza or homemade Thai food 🍕🍜.",
+            "You’re the most incredible, strong, and beautiful person I know, and I’m so grateful for you every day 💖.",
+            "Charlotte, you make every day better just by being you. I’m the luckiest person in the world 💕.",
+            "Every time I see you helping others, it makes me love you even more. You're a true force for good 🌍❤️.",
+            "Your smile is like sunshine—it brightens everything around you 🌞.",
+            "You are the best partner I could ever ask for. I love you more than words can say 💕.",
+            "Your intelligence and wisdom amaze me every day. I’m always learning from you 💡.",
+            "There’s no one else I’d rather spend my time with than you. You make every moment unforgettable 🕰️.",
+            "You’re a beautiful person inside and out, and I feel so lucky to have you by my side 💖.",
+            "I love everything about you, from your kindness to your passion for making the world a better place 🌎.",
+            "Your creativity and skill never cease to amaze me. Whether it’s knitting, 3D printing, or solving puzzles, you do it all 🔥.",
+            "Charlotte, you’re my rock. I don’t know where I’d be without your love and support 💪.",
+            "You always know how to make me smile, even when I’m having a tough day 😊.",
+            "You are a true gem, and I’m so grateful to have you in my life 💎.",
+            "Your love for others is so inspiring, and it makes me proud to be with someone as compassionate as you ❤️.",
+            "You make everything better, from the way you cook to the way you care for those you love 🍽️💓.",
+            "Every moment with you is pure joy. You make my life so much better just by being you 🥰.",
+            "Charlotte, you are a true inspiration to me and everyone around you 🌟.",
+            "The way you handle every challenge with grace and strength makes me admire you even more every day 💪.",
+            "You’re so thoughtful and caring, and I’m forever thankful for your love 💖.",
+            "I love how we can talk about anything, from Wordle strategies to our dreams for the future 🗣️💭.",
+            "Your heart is as big as the ocean, and I’m so lucky to share my life with you 🌊❤️.",
+            "Charlotte, every day with you is an adventure filled with laughter, love, and happiness 🌄.",
+            "I love how passionate you are about your work and your interests. You inspire me to be better every day 💼.",
+            "You have a gift for making everything around you more beautiful, and I’m so grateful for your presence 🌸.",
+            "Your love for your family is something that makes me love you even more. You’re such an amazing aunt and sister 💖.",
+            "I adore how you can turn the simplest moments into something extraordinary. You make life so much fun 🎉.",
+            "Your intelligence and sense of humor make you one of the most interesting people I know 🧠😂.",
+            "Charlotte, you are my everything. I love you more than words can say 💕.",
+            "From the moment I met you, I knew my life would never be the same in the best way possible 💫.",
+            "You’re a true masterpiece, and I’m so lucky to be the one to experience the beauty of your soul 🎨.",
+            "Your kindness and generosity never cease to amaze me. You truly make the world a better place 🌍.",
+            "Charlotte, you are my best friend, my love, and my biggest supporter. I cherish every moment with you 💖.",
+            "No one else could ever compare to you. You are one of a kind, and I’m forever grateful to call you mine 💍.",
+            "I love how you find joy in the little things, like birdwatching or solving puzzles. You bring so much joy into my life 🦜🧩.",
+            "Every day with you is an adventure, and I wouldn’t want to experience this journey with anyone else 🛤️.",
+            "You’re more beautiful every day, both inside and out. I love you endlessly 🌹.",
+            "You inspire me to be a better person every day. Thank you for being the most amazing wife ❤️.",
+            "Charlotte, your heart is pure gold, and I’m the luckiest person to have you by my side 🏅.",
+            "I love how you challenge me to be better, whether it’s with math puzzles or in life. You make me better 💪.",
+            "You make everything fun, even when we’re just sitting on the couch together. I love you more every day 📺💑."
+            // Add the remaining 350 messages here
+        ];
+
+        // Generate a unique message every day
+        function getMessage() {
+            const today = new Date();
+            const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
+            const messageIndex = dayOfYear % messages.length;
+            return messages[messageIndex];
+        }
+
+        // Generate a random color scheme
+        function getColor() {
+            const colors = [
+                ["#FF6347", "#FFD700"], // Tomato, Gold
+                ["#32CD32", "#FFD700"], // LimeGreen, Gold
+                ["#1E90FF", "#FF6347"], // DodgerBlue, Tomato
+                ["#D2691E", "#8A2BE2"], // Chocolate, BlueViolet
+                ["#FFD700", "#FF69B4"]  // Gold, HotPink
+            ];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            return randomColor;
+        }
+
+        function setPage() {
+            const message = getMessage();
+            const color = getColor();
+
+            document.getElementById('message').innerText = message;
+            document.body.style.backgroundColor = color[0];
+            document.body.style.color = color[1];
+        }
+
+        setPage();
+    </script>
+</body>
+</html>
